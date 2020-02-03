@@ -1,0 +1,12 @@
+<div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4">
+            <img src="../../../../assets/img/book.jpg" class="mx-auto d-block">
+            <h2>{{ book.name}}</h2>
+            <p> {{book.shortDescription}}</p>
+            <p><a class="btn btn-secondary" *ngIf="_userService.isAdmin()" [routerLink]="['/edit', book.id]" role="button">Edit</a></p>
+        </div><!-- /.col-lg-4 -->
+        </div>
+      </div>

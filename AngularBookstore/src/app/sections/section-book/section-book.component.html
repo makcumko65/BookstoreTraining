@@ -1,0 +1,81 @@
+<div *ngIf="_userService.isAdmin()">
+    <a routerLink="/create" class="nav-link">Create</a>
+</div>
+
+
+<!--<table *ngIf="tableMode; else create" class="table table-inverse table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Short Desc</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let b of books">
+                <ng-template [ngIf]="book?.id != b.id" [ngIfElse]="edit">
+                <td>{{ b.name}}</td>
+                <td>{{ b.price}}</td>
+                <td>{{ b.shortDescription}}</td>
+                <td>
+                    <button class="btn btn-sm btn-primary" (click)="editBook(b)">Edit</button>
+                    <button class="btn btn-sm btn-danger" (click)="delete(b)">Delete</button>
+                </td>
+                </ng-template>  
+        </tr>
+    </tbody>
+</table>
+-->
+<ng-template #create>
+    <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="book.name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>price</label>
+        <input type="number" [(ngModel)]="book.price" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>shortDescription</label>
+        <input type="text" [(ngModel)]="book.shortDescription" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>longDescription</label>
+        <input type="text" [(ngModel)]="book.longDescription" class="form-control" />
+    </div>
+    <div class="form-group">
+            <label>Author</label>
+            <select type="number" [(ngModel)]="book.authorId" class="form-control" >
+                <option *ngFor="let item of authors" [ngValue]="item.id">{{item.firstName}}  {{item.lastName}}</option>
+            </select>
+    </div>
+    <div class="form-group">
+            <label>Category</label>
+            <select type="number" [(ngModel)]="book.categoryId" class="form-control" >
+                <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+            </select>
+    </div>
+    <div class="form-group">
+        <label>Amount</label>
+        <input type="number" [(ngModel)]="book.amount" class="form-control" />
+    </div>
+    <div>
+        <input type="button" value="save" (click)="save()" class="btn btn-success" />
+        <input type="button" value="cancel" (click)="cancel()" class="btn btn-warning" />
+    </div>
+</ng-template>
+
+<div class="container marketing">
+
+        <!-- Three columns of text below the carousel -->
+        <div class="row">
+          <div class="col-lg-4" *ngFor="let b of books">
+            <img src="../../../assets/img/book.jpg" class="mx-auto d-block">
+            <h2>{{ b.name}}</h2>
+            <p> {{b.shortDescription}}</p>
+            <p><a class="btn btn-secondary" [routerLink]="['/bookItem', b.id]" role="button">View details »</a></p>
+            <button class="btn btn-sm btn-danger" *ngIf="_userService.isAdmin()" (click)="delete(b)">Delete</button>
+        </div><!-- /.col-lg-4 -->
+        </div>
+      </div>

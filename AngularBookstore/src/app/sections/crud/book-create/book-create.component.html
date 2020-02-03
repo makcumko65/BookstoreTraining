@@ -1,0 +1,65 @@
+<form [formGroup]="form" class="col-lg-4">      
+        <div class="form-group">
+            <label>name</label>
+            <input type="text" formControlName="name" class="form-control" [ngClass]="{'is-invalid': form.get('name').touched
+            && form.get('name').invalid}"/>
+            <div *ngIf="form.get('name').touched && form.get('name').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('name').errors.required">Name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label>shortDescription</label>
+            <input type="text" formControlName="shortDescription" class="form-control" [ngClass]="{'is-invalid': form.get('shortDescription').touched
+            && form.get('shortDescription').invalid}"/>
+            <div *ngIf="form.get('shortDescription').touched && form.get('shortDescription').invalid" class="invalid-feedback">
+                <div *ngIf="form.get('shortDescription').errors.required">shortDescription is required</div>
+                <div *ngIf="form.get('shortDescription').errors.pattern">Price must be greater than 0</div>
+            </div> 
+        </div>
+        <div class="form-group">
+            <label>longDescription</label>
+            <input type="text" formControlName="longDescription" class="form-control" />
+        </div>
+        <div class="form-group">
+                <label>price</label>
+                <input type="number" formControlName="price" class="form-control" [ngClass]="{'is-invalid': form.get('price').touched
+            && form.get('price').invalid}"/>
+                <div *ngIf="form.get('price').touched && form.get('price').invalid" class="invalid-feedback">
+                    <div *ngIf="form.get('price').errors.required">Price is required</div>
+                    <div *ngIf="form.get('price').errors.min">Price must be greater than 0</div>
+                </div>  
+        </div>
+        <div class="form-group">
+                <label>amount</label>
+                <input type="number" formControlName="amount" class="form-control" [ngClass]="{'is-invalid': form.get('amount').touched
+                && form.get('amount').invalid}"/>
+                    <div *ngIf="form.get('amount').touched && form.get('amount').invalid" class="invalid-feedback">
+                        <div *ngIf="form.get('amount').errors.required">Amount is required</div>
+                        <div *ngIf="form.get('amount').errors.min">Amount must be greater than 0</div>
+                    </div> 
+        </div>
+        <div class="form-group">
+                <label>year</label>
+                <input type="number" formControlName="year" class="form-control" />
+                <!--<div *ngIf="form.price.errors" class="invalid-feedback">
+                        <div *ngIf="form.price.errors.required">Price is required</div>
+                        <div *ngIf="form.price.errors.min">Price must be greater than 0</div>
+                </div>--->
+        </div>
+        <div class="form-group">
+                <label>Author</label>
+                <select type="number" formControlName="authorId" class="form-control" >
+                    <option type="number" *ngFor="let item of authors" [ngValue]="item.id">{{item.firstName}}  {{item.lastName}}</option>
+                </select>
+        </div>
+        <div class="form-group">
+                <label>Category</label>
+                <select type="number" formControlName="categoryId" class="form-control" >
+                    <option *ngFor="let category of categories" [ngValue]="category.id">{{category.name}}</option>
+                </select>
+        </div>
+        <div>
+                <input type="button" value="save" [disabled]="!form.valid" (click)="save(form)" class="btn btn-success" />
+                <input type="button" value="cancel" (click)="cancel()" class="btn btn-warning" />
+        </div>
+      </form>

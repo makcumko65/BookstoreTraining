@@ -1,0 +1,15 @@
+<form class="form-signin" [formGroup]="loginForm">
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>  
+        <div class="form-group">
+            <label class="sr-only">Email address</label>
+            <input type="email" class="form-control" formControlName="email"
+             placeholder="Email address" required="" autofocus="">
+        </div>
+        <div class="form-group">
+            <label class="sr-only">Password</label>
+            <input type="password" class="form-control" formControlName="password"
+             placeholder="Passwords" required="" autofocus="">
+        </div>
+              <button class="btn btn-lg btn-primary btn-block" type="submit" (click)="login(loginForm.value)">Sign in</button>
+              <p class="mt-5 mb-3 text-muted">© 2017-2019</p>
+      </form>
